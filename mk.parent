@@ -1,4 +1,4 @@
-<$mkbuild/config.mk
+<$mkbuild/mk.config
 
 all:QV: $TARG
 	

@@ -1,4 +1,4 @@
-<$mkbuild/config.mk
+<$mkbuild/mk.config
 <$mkbuild/mk.build
 <$mkbuild/mk.install
 <$mkbuild/mk.clean
