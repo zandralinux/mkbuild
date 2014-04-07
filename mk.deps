@@ -9,7 +9,7 @@ paths = `{ find $pkgdirs -type f -name mkfile }
 		if test "$i" = "$pkg"; then \
 			printf "${i}_DEPDIR = $dir\n\n"; \
 			printf "<$dir/depsinc.mk\n\n"; \
-			printf "$pkg:QV:\n\tcd $dir\n\tenv -i PATH=\"$PATH\" mkbuild=\"$mkbuild\" mk\n\n"; \
+			printf "$pkg:QV:\n\tcd $dir\n\tenv -i PATH=\"$PATH\" configmk=\"$configmk\" mkbuild=\"$mkbuild\" mk\n\n"; \
 		fi; \
 	done; \
 done >> .deps.mk }

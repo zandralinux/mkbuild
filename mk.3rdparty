@@ -10,9 +10,9 @@ build:QV: fetch
 	t=$(cmp -s $mkfile $oldpwd/.cache || echo $?)
 	if test "$t" != ""; then
 		if test "${targ}" != ""; then
-			env -i PATH="$PATH" mkbuild="$mkbuild" TARG="${targ}" mk -f $mkfile
+			env -i PATH="$PATH" configmk="$configmk" mkbuild="$mkbuild" TARG="${targ}" mk -f $mkfile
 		else
-			env -i PATH="$PATH" mkbuild="$mkbuild" mk -f $mkfile
+			env -i PATH="$PATH" configmk="$configmk" mkbuild="$mkbuild" mk -f $mkfile
 		fi
 		cp $mkfile $oldpwd/.cache
 	fi
@@ -20,16 +20,16 @@ build:QV: fetch
 install:QV: all
 	cd $src
 	if test "${targ}" != ""; then
-		env -i PATH="$PATH" mkbuild="$mkbuild" mk -f $mkfile install TARG="${targ}" ROOT="${ROOT}"
+		env -i PATH="$PATH" configmk="$configmk" mkbuild="$mkbuild" mk -f $mkfile install TARG="${targ}" ROOT="${ROOT}"
 	else
-		env -i PATH="$PATH" mkbuild="$mkbuild" mk -f $mkfile install ROOT="${ROOT}"
+		env -i PATH="$PATH" configmk="$configmk" mkbuild="$mkbuild" mk -f $mkfile install ROOT="${ROOT}"
 	fi
 
 clean:QV:
 	rm -f .cache
 	if test -d $src; then
 		cd $src
-		env -i PATH="$PATH" mkbuild="$mkbuild" mk -f $mkfile clean
+		env -i PATH="$PATH" configmk="$configmk" mkbuild="$mkbuild" mk -f $mkfile clean
 	fi
 
 <$mkbuild/mk.fetch
