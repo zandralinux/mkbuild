@@ -32,4 +32,9 @@ clean:QV:
 		env -i PATH="$PATH" configmk="$configmk" mkbuild="$mkbuild" mk -f $mkfile clean
 	fi
 
+distclean:QV:
+	if test -d $src; then
+		rm -rf $src
+	fi
+
 <$mkbuild/mk.fetch

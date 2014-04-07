@@ -11,3 +11,5 @@ clean:QV:
 	bin_obj=$(eval echo $bin_obj)
 	echo rm -f $t $b $OBJ $bin_obj $l $LOBJ $CLEAN_FILES .targs.mk .deps.mk
 	rm -f $t $b $OBJ $bin_obj $l $LOBJ $CLEAN_FILES .targs.mk .deps.mk
+
+distclean:QV: clean
