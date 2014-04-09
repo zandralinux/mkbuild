@@ -10,7 +10,7 @@ build:QV: fetch
 	t=$(cmp -s $mkfile $oldpwd/.cache || echo $?)
 	if test "$t" != ""; then
 		if test "${targ}" != ""; then
-			env -i PATH="$PATH" configmk="$configmk" mkbuild="$mkbuild" TARG="${targ}" mk -f $mkfile
+			env -i PATH="$PATH" configmk="$configmk" mkbuild="$mkbuild" mk -f $mkfile TARG="${targ}"
 		else
 			env -i PATH="$PATH" configmk="$configmk" mkbuild="$mkbuild" mk -f $mkfile
 		fi
