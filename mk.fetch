@@ -2,13 +2,16 @@
 fetch:QV: fetch-git fetch-http
 
 fetch-git:QV:
-	if test "$git" = ""; then
+	if test x"$git" = x""; then
 		return
 	fi
-	test -d $src || git clone $git $src
+	if test x"$branch" = x""; then
+		branch=master
+	fi
+	test -d $src || git clone -b $branch $git $src
 
 fetch-http:QV:
-	if test "$url" = ""; then
+	if test x"$url" = x""; then
 		return
 	fi
 	wget -c $url
