@@ -8,7 +8,7 @@ fetch-git:QV:
 	if test x"$branch" = x""; then
 		branch=master
 	fi
-	test -d $src || git clone -b $branch $git $src
+	test -d $src || git clone --depth 1 -b $branch $git $src
 
 fetch-http:QV:
 	if test x"$url" = x""; then
