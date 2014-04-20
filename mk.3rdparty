@@ -7,29 +7,37 @@ build:QV: fetch
 	mkdir -p $src
 	oldpwd=`pwd`
 	cd $src
-	t=$(cmp -s $mkfile $oldpwd/.cache || echo $?)
-	if test "$t" != ""; then
-		if test "${targ}" != ""; then
-			env -i PATH="$PATH" configmk="$configmk" mkbuild="$mkbuild" mk -f $mkfile TARG="${targ}"
-		else
-			env -i PATH="$PATH" configmk="$configmk" mkbuild="$mkbuild" mk -f $mkfile
+	for f in $mkfile; do
+		cachefile=$oldpwd/.cache-`basename $f`
+		t=$(cmp -s $f $cachefile || echo $?)
+		if test "$t" != ""; then
+			if test "${targ}" != ""; then
+				env -i PATH="$PATH" configmk="$configmk" mkbuild="$mkbuild" mk -f $f TARG="${targ}"
+			else
+				env -i PATH="$PATH" configmk="$configmk" mkbuild="$mkbuild" mk -f $f
+			fi
+			cp $f $cachefile
 		fi
-		cp $mkfile $oldpwd/.cache
-	fi
+	done
 
 install:QV: all
 	cd $src
-	if test "${targ}" != ""; then
-		env -i PATH="$PATH" configmk="$configmk" mkbuild="$mkbuild" mk -f $mkfile install TARG="${targ}" ROOT="${ROOT}"
-	else
-		env -i PATH="$PATH" configmk="$configmk" mkbuild="$mkbuild" mk -f $mkfile install ROOT="${ROOT}"
-	fi
+	for f in $mkfile; do
+		if test "${targ}" != ""; then
+			env -i PATH="$PATH" configmk="$configmk" mkbuild="$mkbuild" mk -f $f install TARG="${targ}" ROOT="${ROOT}"
+		else
+			env -i PATH="$PATH" configmk="$configmk" mkbuild="$mkbuild" mk -f $f install ROOT="${ROOT}"
+		fi
+	done
 
 clean:QV:
-	rm -f .cache
+	oldpwd=`pwd`
 	if test -d $src; then
 		cd $src
-		env -i PATH="$PATH" configmk="$configmk" mkbuild="$mkbuild" mk -f $mkfile clean
+		for f in $mkfile; do
+			rm -f $oldpwd/.cache-`basename $f`
+			env -i PATH="$PATH" configmk="$configmk" mkbuild="$mkbuild" mk -f $f clean
+		done
 	fi
 
 distclean:QV:
