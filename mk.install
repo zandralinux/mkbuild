@@ -1,6 +1,6 @@
 
 install:QV: install_bin install_lib install_man install_other \
-			install_symlinks install_dirs
+			install_dirs install_symlinks
 	if test "$INSTALL_PERMISSIONS" = ""; then
 		return
 	fi
