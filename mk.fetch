@@ -1,18 +1,15 @@
-
 fetch:QV: fetch-git fetch-http
 
 fetch-git:QV:
-	if test x"$git" = x""; then
-		return
+	if ! test x"$git" = x""; then
+		if test x"$branch" = x""; then
+			branch=master
+		fi
+		test -d $src || git clone --depth 1 -b $branch $git $src
 	fi
-	if test x"$branch" = x""; then
-		branch=master
-	fi
-	test -d $src || git clone --depth 1 -b $branch $git $src
 
 fetch-http:QV:
-	if test x"$url" = x""; then
-		return
+	if ! test x"$url" = x""; then
+		wget -c $url
+		tar -xf `basename $url`
 	fi
-	wget -c $url
-	tar -xf `basename $url`

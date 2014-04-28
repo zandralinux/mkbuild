@@ -1,7 +1,6 @@
 <$mkbuild/mk.config
 
 all:QV: build
-	
 
 build:QV: fetch
 	mkdir -p $src
