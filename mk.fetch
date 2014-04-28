@@ -1,7 +1,7 @@
 fetch:QV: fetch-git fetch-http
 
 fetch-git:QV:
-	if ! test x"$git" = x""; then
+	if test x"$git" != x""; then
 		if test x"$branch" = x""; then
 			branch=master
 		fi
@@ -9,7 +9,7 @@ fetch-git:QV:
 	fi
 
 fetch-http:QV:
-	if ! test x"$url" = x""; then
+	if test x"$url" != x""; then
 		wget -c $url
 		tar -xf `basename $url`
 	fi

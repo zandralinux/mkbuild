@@ -1,6 +1,6 @@
 install:QV: install_bin install_lib install_man install_other \
 			install_dirs install_symlinks
-	if ! test "$INSTALL_PERMISSIONS" = ""; then
+	if test "$INSTALL_PERMISSIONS" != ""; then
 		eval `echo $INSTALL_PERMISSIONS | tr ' ' '\n' | paste -d ' ' - - | \
 			awk '{ printf("echo \"CHMOD %s ${ROOT}${PREFIX}%s\"; \
 				chmod %s ${ROOT}${PREFIX}%s;\n", $1, $2, $1, $2) }'`
@@ -55,7 +55,7 @@ install_other:QV: all
 	done
 
 install_symlinks:QV: all
-	if ! test "$INSTALL_SYMLINK" = ""; then
+	if test "$INSTALL_SYMLINK" != ""; then
 		eval `echo $INSTALL_SYMLINK | tr ' ' '\n' | paste -d ' ' - - | \
 			awk '{ printf("echo \"LN %s ${ROOT}${PREFIX}%s\"; \
 				ln -sf %s ${ROOT}${PREFIX}%s;\n", $1, $2, $1, $2) }'`
