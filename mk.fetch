@@ -10,6 +10,8 @@ fetch-git:QV:
 
 fetch-http:QV:
 	if test x"$url" != x""; then
-		wget -c $url
+		if ! test -f `basename $url`; then
+			wget -c $url
+		fi
 		tar -xf `basename $url`
 	fi
