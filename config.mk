@@ -19,6 +19,7 @@ DFLDIR = ${ETCDIR}/default
 MANDIR = ${PREFIX}/share/man
 
 INSTALL = /usr/bin/install
+SUM = sha512sum
 
 CPPFLAGS = -D_BSD_SOURCE -D_GNU_SOURCE
 CFLAGS = ${CPPFLAGS}

@@ -13,7 +13,7 @@ fetch-http:QV:
 		if test x"$pkgsrc" = x""; then
 			pkgsrc=`basename $url`
 		fi
-		t=$(cat checksums | sha512sum -c && echo ok || echo fail)
+		t=$(cat checksums | $SUM -c && echo ok || echo fail)
 		if test "$(echo $t | grep ok)" = ""; then
 			rm -f "$pkgsrc"
 			wget -c "$url" -O "$pkgsrc"
