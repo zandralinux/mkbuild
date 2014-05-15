@@ -10,8 +10,17 @@ fetch-git:QV:
 
 fetch-http:QV:
 	if test x"$url" != x""; then
-		if ! test -f `basename $url`; then
-			wget -c $url
+		if test x"$pkgsrc" = x""; then
+			pkgsrc=`basename $url`
 		fi
-		tar -xf `basename $url`
+		t=$(cat checksums | sha512sum -c && echo ok || echo fail)
+		if test "$(echo $t | grep ok)" = ""; then
+			rm -f "$pkgsrc"
+			wget -c "$url" -O "$pkgsrc"
+		fi
+		if test -e "$pkgsrc"; then
+			tar -xf "$pkgsrc"
+		else
+			echo "Package fetching failed"
+		fi
 	fi
