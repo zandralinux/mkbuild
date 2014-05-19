@@ -36,3 +36,4 @@ fetch:QV:
 		cd ..
 	done
 
+<$mkbuild/mk.package

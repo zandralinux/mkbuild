@@ -46,3 +46,4 @@ distclean:QV:
 	fi
 
 <$mkbuild/mk.fetch
+<$mkbuild/mk.package
