@@ -4,4 +4,3 @@ package:QV:
 	env -i PATH="$PATH" configmk="$configmk" mkbuild="$mkbuild" mk install ROOT=$(pwd)/.pkgroot
 	tar -zcf $pkg.tar.gz -C .pkgroot .
 	rm -rf .pkgroot
-	
