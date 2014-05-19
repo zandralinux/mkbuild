@@ -1,7 +1,6 @@
 <$mkbuild/mk.config
 
 all:QV: $TARG
-	
 
 `{ echo "# Auto-generated file by mk, do not edit" > .targs.mk }
 `{ for i in $TARG; do printf "$i:QV:\n\tcd $i\n\tenv -i PATH=\"$PATH\" configmk="$configmk" mkbuild=\"$mkbuild\" mk\n\n" ; done >> .targs.mk }
@@ -36,4 +35,9 @@ fetch:QV:
 		cd ..
 	done
 
-<$mkbuild/mk.package
+package:QV:
+	for t in $TARG; do
+		cd $t
+		env -i PATH="$PATH" configmk="$configmk" mkbuild="$mkbuild" mk package
+		cd ..
+	done
