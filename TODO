@@ -1,5 +1,5 @@
 Wishlist:
-=========
+---------
 
 bob:
 	Get the cflags and ldflags of dependencies of $DEPS in a package?
@@ -12,3 +12,9 @@ bob:
 		mk TARG='pkg' deplist    - print $DEPS list.
 		mk TARG='pkg' depcflags  - get all cflags of dependencies (DEPS_CFLAGS).
 		mk TARG='pkg' depldflags - get all ldflags of dependencies (DEPS_LDFLAGS).
+
+
+Generic
+-------
+
+  * install-dev target to install headers, libraries and dev tools
