@@ -9,7 +9,13 @@ clean:QV:
 		bin_obj="$bin_obj \$${bobj}_OBJ"
 	done
 	bin_obj=$(eval echo $bin_obj)
-	echo rm -f $t $b $OBJ $bin_obj $l $LOBJ $CLEAN_FILES .targs.mk .deps.mk
-	rm -f $t $b $OBJ $bin_obj $l $LOBJ $CLEAN_FILES .targs.mk .deps.mk
+	lib_obj=
+	for i in $LIB; do
+		lobj=$(echo $i|tr '.' '_')
+		lib_obj="$lib_obj \$${lobj}_OBJ"
+	done
+	lib_obj=$(eval echo $lib_obj)
+	echo rm -f $t $b $OBJ $bin_obj $lib_obj $l $LOBJ $CLEAN_FILES .targs.mk .deps.mk
+	rm -f $t $b $OBJ $bin_obj $lib_obj $l $LOBJ $CLEAN_FILES .targs.mk .deps.mk
 
 distclean:QV: clean
