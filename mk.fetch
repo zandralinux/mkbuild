@@ -10,17 +10,19 @@ fetch-git:QV:
 
 fetch-http:QV:
 	if test x"$url" != x""; then
-		if test x"$pkgsrc" = x""; then
-			pkgsrc=`basename $url`
-		fi
-		t=$(cat checksums | $SUM -c && echo ok || echo fail)
-		if test "$(echo $t | grep ok)" = ""; then
-			rm -f "$pkgsrc"
-			wget -c "$url" -O "$pkgsrc"
-		fi
-		if test -e "$pkgsrc"; then
-			tar -xf "$pkgsrc"
-		else
-			echo "Package fetching failed"
-		fi
+		for u in $url; do
+			if test x"$pkgsrc" = x""; then
+				pkgsrc=`basename $u`
+			fi
+			t=$(cat checksums | $SUM -c && echo ok || echo fail)
+			if test "$(echo $t | grep ok)" = ""; then
+				rm -f "$pkgsrc"
+				wget -c "$u" -O "$pkgsrc" || rm -f "$pkgsrc"
+			fi
+			if test -e "$pkgsrc"; then
+				tar -xf "$pkgsrc"
+			else
+				echo "Package fetching failed"
+			fi
+		done
 	fi
