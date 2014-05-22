@@ -1,4 +1,4 @@
-arch = i486
+arch = x86_64
 nprocs = 2
 
 TOOLCHAIN_TRIPLET = ${arch}-musl-linux
