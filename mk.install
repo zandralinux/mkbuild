@@ -31,7 +31,7 @@ install_dirs:QV: all
 	done
 
 install_man:QV: all
-	for i in 1 1b 2 3 4 5 6 7 8; do
+	for i in 1 1b 2 3 4 5 6 7 8 9; do
 		a=`echo '\$INSTALL_MAN'$i`
 		a=`eval echo $a`
 		for f in $a; do
