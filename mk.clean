@@ -5,13 +5,13 @@ clean:QV:
 	l=`if test "$LIB" = "NOLIB"; then echo; else echo $LIB; fi `
 	bin_obj=
 	for i in $BIN; do
-		bobj=$(echo $i|tr '.' '_')
+		bobj=$(echo $i|tr '.' '_'|tr '/' '_')
 		bin_obj="$bin_obj \$${bobj}_OBJ"
 	done
 	bin_obj=$(eval echo $bin_obj)
 	lib_obj=
 	for i in $LIB; do
-		lobj=$(echo $i|tr '.' '_')
+		lobj=$(echo $i|tr '.' '_'|tr '/' '_')
 		lib_obj="$lib_obj \$${lobj}_OBJ"
 	done
 	lib_obj=$(eval echo $lib_obj)
