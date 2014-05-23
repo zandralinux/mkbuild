@@ -41,7 +41,7 @@ clean:QV:
 
 distclean:QV:
 	if test -d $src; then
-		echo RM -rf $src
+		echo rm -rf $src
 		rm -rf $src
 	fi
 
