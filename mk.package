@@ -2,5 +2,9 @@
 package:QV:
 	pkg=$(basename `pwd`)
 	env -i PATH="$PATH" configmk="$configmk" mkbuild="$mkbuild" mk install ROOT=$(pwd)/.pkgroot
-	tar -zcf $pkg.tar.gz -C .pkgroot .
+	name="$pkg"
+	if test x"$v" != x""; then
+		name="$name#$v"
+	fi
+	fakeroot tar -zcf $name.pkg.tgz -C .pkgroot .
 	rm -rf .pkgroot
