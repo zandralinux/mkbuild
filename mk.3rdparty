@@ -21,8 +21,14 @@ build:QV: fetch patch
 
 patch:QV: fetch
 	cd $src
+	n=1
 	for p in $patches; do
-		patch -p1 < $p
+		if test "$p" = "0"; then
+			n=0
+		else
+			patch -p$n < $p
+			n=1
+		fi
 	done
 
 install:QV: all
