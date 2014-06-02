@@ -20,6 +20,7 @@ build:QV: fetch patch
 	done
 
 patch:QV: fetch
+	mkdir -p $src
 	cd $src
 	n=1
 	for p in $patches; do
