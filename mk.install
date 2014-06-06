@@ -47,10 +47,13 @@ install_other:QV: all
 		a=`eval echo $a`
 		d=`echo '\$INSTALL_OTHER'${i}'_DIR'`
 		d=`eval echo $d`
+		p=`echo '\$INSTALL_OTHER'${i}'_PERMS'`
+		p=`eval echo $p`
+		test "$p" = "" && p=644
 		mkdir -p ${ROOT}$d
 		for f in $a; do
 			echo INSTALL ${ROOT}${PREFIX}$d/`basename $f`
-			$INSTALL -m 644 $f ${ROOT}${PREFIX}$d/`basename $f`
+			$INSTALL -m $p $f ${ROOT}${PREFIX}$d/`basename $f`
 		done
 	done
 
