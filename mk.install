@@ -8,7 +8,7 @@ install:QV: install_bin install_lib install_man install_other \
 
 install_bin:QV: all
 	for f in $INSTALL_BIN; do
-		mkdir -p ${ROOT}${PREFIX}$BINDIR
+		$INSTALL -d -m 755 ${ROOT}${PREFIX}$BINDIR
 		echo INSTALL ${ROOT}${PREFIX}$BINDIR/`basename $f`
 		$INSTALL -m 755 $f ${ROOT}${PREFIX}$BINDIR/`basename $f`
 		type=`file -b $f | cut -d ' ' -f 1`
@@ -19,7 +19,7 @@ install_bin:QV: all
 
 install_lib:QV: all
 	for f in $INSTALL_LIB; do
-		mkdir -p ${ROOT}${PREFIX}$LIBDIR
+		$INSTALL -d -m 755 ${ROOT}${PREFIX}$LIBDIR
 		echo INSTALL ${ROOT}${PREFIX}$LIBDIR/`basename $f`
 		$INSTALL -m 644 $f ${ROOT}${PREFIX}$LIBDIR/`basename $f`
 	done
@@ -27,7 +27,7 @@ install_lib:QV: all
 install_dirs:QV: all
 	for f in $INSTALL_DIRS; do
 		echo MKDIR ${ROOT}${PREFIX}$f
-		mkdir -p ${ROOT}${PREFIX}$f
+		$INSTALL -d -m 755 ${ROOT}${PREFIX}$f
 	done
 
 install_man:QV: all
@@ -35,7 +35,7 @@ install_man:QV: all
 		a=`echo '\$INSTALL_MAN'$i`
 		a=`eval echo $a`
 		for f in $a; do
-			mkdir -p ${ROOT}${PREFIX}$MANDIR/man$i
+			$INSTALL -d -m 755 ${ROOT}${PREFIX}$MANDIR/man$i
 			echo INSTALL ${ROOT}${PREFIX}$MANDIR/man$i/`basename $f`
 			$INSTALL -m 644 $f ${ROOT}${PREFIX}$MANDIR/man$i/`basename $f`
 		done
@@ -50,7 +50,7 @@ install_other:QV: all
 		p=`echo '\$INSTALL_OTHER'${i}'_PERMS'`
 		p=`eval echo $p`
 		test "$p" = "" && p=644
-		mkdir -p ${ROOT}$d
+		$INSTALL -d -m 755 ${ROOT}$d
 		for f in $a; do
 			echo INSTALL ${ROOT}${PREFIX}$d/`basename $f`
 			$INSTALL -m $p $f ${ROOT}${PREFIX}$d/`basename $f`
