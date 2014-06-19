@@ -1,6 +1,7 @@
 
 package:QV:
 	pkg=$(basename `pwd`)
+	rm -rf $(pwd)/.pkgroot
 	env -i PATH="$PATH" configmk="$configmk" mkbuild="$mkbuild" mk install ROOT=$(pwd)/.pkgroot
 	name="$pkg"
 	if test x"$v" != x""; then
