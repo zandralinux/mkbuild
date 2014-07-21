@@ -7,5 +7,5 @@ package:QV:
 	if test x"$v" != x""; then
 		name="$name#$v"
 	fi
-	fakeroot -- tar -zcf "$pkgpath" -C .pkgroot .
+	fakeroot -- tar -zcf "${name}.pkg.tgz" -C .pkgroot .
 	rm -rf .pkgroot
