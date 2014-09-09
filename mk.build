@@ -1,5 +1,5 @@
 all:QV: $DEPS $TARG $LIB $BIN
-
+	
 TARG = `{ if test "$TARG" != ""; then echo $TARG; else echo "NOTARG"; fi }
 BIN = `{ if test "$BIN" != ""; then echo $BIN; else echo "NOBIN"; fi }
 LIB = `{ if test "$LIB" != ""; then echo $LIB; else echo "NOLIB"; fi }
