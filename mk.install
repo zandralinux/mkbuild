@@ -8,20 +8,20 @@ install:QV: install_bin install_lib install_man install_other \
 
 install_bin:QV: all
 	for f in $INSTALL_BIN; do
-		$INSTALL -d -m 755 ${ROOT}${PREFIX}$BINDIR
-		echo INSTALL ${ROOT}${PREFIX}$BINDIR/`basename $f`
-		$INSTALL -m 755 $f ${ROOT}${PREFIX}$BINDIR/`basename $f`
+		$INSTALL -d -m 755 ${ROOT}$BINDIR
+		echo INSTALL ${ROOT}$BINDIR/`basename $f`
+		$INSTALL -m 755 $f ${ROOT}$BINDIR/`basename $f`
 		type=`file -b $f | cut -d ' ' -f 1`
 		if test "$type" = "ELF"; then
-			$STRIP ${ROOT}${PREFIX}$BINDIR/`basename $f`
+			$STRIP ${ROOT}$BINDIR/`basename $f`
 		fi
 	done
 
 install_lib:QV: all
 	for f in $INSTALL_LIB; do
-		$INSTALL -d -m 755 ${ROOT}${PREFIX}$LIBDIR
-		echo INSTALL ${ROOT}${PREFIX}$LIBDIR/`basename $f`
-		$INSTALL -m 644 $f ${ROOT}${PREFIX}$LIBDIR/`basename $f`
+		$INSTALL -d -m 755 ${ROOT}$LIBDIR
+		echo INSTALL ${ROOT}$LIBDIR/`basename $f`
+		$INSTALL -m 644 $f ${ROOT}$LIBDIR/`basename $f`
 	done
 
 install_dirs:QV: all
@@ -35,9 +35,9 @@ install_man:QV: all
 		a=`echo '\$INSTALL_MAN'$i`
 		a=`eval echo $a`
 		for f in $a; do
-			$INSTALL -d -m 755 ${ROOT}${PREFIX}$MANDIR/man$i
-			echo INSTALL ${ROOT}${PREFIX}$MANDIR/man$i/`basename $f`
-			$INSTALL -m 644 $f ${ROOT}${PREFIX}$MANDIR/man$i/`basename $f`
+			$INSTALL -d -m 755 ${ROOT}$MANDIR/man$i
+			echo INSTALL ${ROOT}$MANDIR/man$i/`basename $f`
+			$INSTALL -m 644 $f ${ROOT}$MANDIR/man$i/`basename $f`
 		done
 	done
 
