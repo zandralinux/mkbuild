@@ -1,5 +1,5 @@
 install:QV: install_bin install_lib install_man install_other \
-			install_dirs install_symlinks
+			install_dirs install_symlinks $INSTALL_EXTRA
 	if test "$INSTALL_PERMISSIONS" != ""; then
 		eval `echo $INSTALL_PERMISSIONS | tr ' ' '\n' | paste -d ' ' - - | \
 			awk '{ printf("echo \"CHMOD %s ${ROOT}${PREFIX}%s\"; \
