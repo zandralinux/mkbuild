@@ -1,7 +1,7 @@
 arch = x86_64
 nprocs = 2
 
-TOOLCHAIN_TRIPLET = ${arch}-musl-linux
+TOOLCHAIN_TRIPLET = ${arch}-linux-musl
 CC = ${TOOLCHAIN_TRIPLET}-gcc
 HOSTCC = $CC -static
 LD = $CC
